@@ -63,8 +63,7 @@ def load_blast(lib_path=None):
             except Exception:
                 continue
     raise RuntimeError(
-        "Could not load libblast.so. Run build_blast.sh first.\n"
-        "Or specify path with --blast-lib"
+        "libblast.so not found. Run: bash build_blast.sh"
     )
 
 

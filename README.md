@@ -23,13 +23,12 @@ Self-verification: after extracting all files, the sequential read position land
 
 - Python 3.6+
 - GCC
-- `blast.c` from [zlib/contrib/blast](https://github.com/madler/zlib/tree/master/contrib/blast)
 
 ## Quick Start
 
 ```bash
 # 1. Build the blast decompression library
-bash build_blast.sh
+bash build_blast.sh   # compiles blast.c (bundled, zlib License)
 
 # 2. Extract
 python3 is3extract.py data.z ./output --verbose
