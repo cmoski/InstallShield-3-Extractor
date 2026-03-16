@@ -101,6 +101,8 @@ def parse_directory(data, base, namenanfang, verzeichnisse, datei_anzahl):
         name_raw = data[pos + 4:pos + blocklaenge]
         name = name_raw.split(b'\x00')[0].decode('cp437', errors='replace')
         name = name.replace('\\', '/')
+        # Strip non-path characters (e.g. 0x04 control bytes in root dir records)
+        name = ''.join(c for c in name if c.isprintable() and c not in '/\\:\0')
         dirs.append({'count': anzahl, 'name': name})
         o += blocklaenge
 
@@ -188,7 +190,7 @@ def extract(z_path, out_dir, blast_lib=None, verbose=False):
     ok = fail = 0
 
     for entry in files:
-        rel_path = (entry['dir'] + '/' + entry['name']).lstrip('/')
+        rel_path = '/'.join(filter(None, [entry['dir'], entry['name']]))
         out_path = os.path.join(out_dir, rel_path)
         os.makedirs(os.path.dirname(out_path) or out_dir, exist_ok=True)
 
