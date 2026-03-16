@@ -1,0 +1,10 @@
+libblast.so
+blast.c
+blast.h
+blast_wrap.c
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.pytest_cache/
